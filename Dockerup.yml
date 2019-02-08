@@ -1,0 +1,25 @@
+version: '3.6'
+
+services:
+  devops:
+    image: devops:0.0.0
+    deploy:
+      replicas: 1
+    networks:
+      - dotnetwork
+    ports:
+      - '8080:80'
+  sqlops:
+    image: microsoft/mssql-server-linux
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Florida2019
+    deploy:
+      replicas: 1
+    networks:
+      - dotnetwork
+    ports: 
+      - '1433:1433'
+
+networks:
+  dotnetwork:
